@@ -1,71 +1,24 @@
-package com.jarroyo.firstjetpackcompose
+package com.jarroyo.firstjetpackcompose.ui.compose
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.app.AlertDialog
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.Button
+import androidx.compose.material.Card
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
-import com.jarroyo.firstjetpackcompose.ui.FirstJetpackComposeTheme
-import kotlin.reflect.KProperty
-
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            FirstJetpackComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
-            }
-        }
-    }
-}
 
 @Composable
-fun Greeting(name: String) {
-
-    Column() {
-        Text(text = "Hello $name!")
-        Text("This is")
-        Text("below each other")
-
-        Row {
-            Text("Text")
-            Text("here")
-        }
-        ClickableText()
-        LazyColumnFor((0..1000).toList()) {
-            Text("This is $it")
-        }
-
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    FirstJetpackComposeTheme {
-        Greeting("Android")
-    }
-}
-
-@Composable
-fun ClickableText() {
+fun AlertDialogComposable(email: String) {
     // Reacting to state changes is core to how Jetpack Compose works. This state variable "showPopup"
     // is used to control whether the popup should be shown. The value is toggled every time the
     // text "Click to see dialog" is clicked. Every time the value of this variable changes,
@@ -113,7 +66,7 @@ fun ClickableText() {
         AlertDialog(
             onDismissRequest = onPopupDismissed,
             text = {
-                Text("Congratulations! You just clicked the text successfully")
+                Text("Congratulations! You $email just clicked the text successfully")
             },
             confirmButton = {
                 // Button is a pre-defined Material Design implementation of a contained button -
