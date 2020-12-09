@@ -28,7 +28,7 @@ fun HomeComposable(appState: AppState) {
         val title = Text("Welcome Home ${appState.email} - ${appState.password}")
 
         //ArtistCard(appState.email, {})
-        ImageResource(R.drawable.ic_launcher_foreground)
+        //ImageResource(R.drawable.ic_launcher_foreground)
     }
 
     BackButtonHandler {
@@ -54,7 +54,7 @@ fun ArtistCard(
         Card(elevation = 4.dp,
         modifier = Modifier.padding(16.dp)) {
             Text(text = "Tarjeta")
-            ImagePicasso(url = "https://github.com/vinaygaba/CreditCardView/raw/master/images/Feature%20Image.png")
+            //ImagePicasso(url = "https://github.com/vinaygaba/CreditCardView/raw/master/images/Feature%20Image.png")
         }
     }
 }

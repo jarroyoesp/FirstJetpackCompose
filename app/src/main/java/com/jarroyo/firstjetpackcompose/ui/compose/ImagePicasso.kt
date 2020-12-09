@@ -20,7 +20,8 @@ import androidx.compose.ui.res.loadImageResource
 import androidx.compose.ui.unit.dp
 import com.squareup.picasso.Picasso
 
-@Composable
+/*@Composable
+
 fun ImagePicasso(
     url: String,
     modifier: Modifier = Modifier.fillMaxWidth().preferredSizeIn(maxHeight = 200.dp)
@@ -81,4 +82,4 @@ fun ImagePicasso(
             }
         }
     }
-}
+}*/

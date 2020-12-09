@@ -15,6 +15,7 @@ import androidx.compose.ui.res.loadVectorResource
 import androidx.compose.ui.unit.dp
 
 
+/*
 @Composable
 fun ImageResource(@DrawableRes resId: Int) {
     // There are multiple methods available to load an image resource in Compose. However, it would
@@ -30,4 +31,4 @@ fun ImageResource(@DrawableRes resId: Int) {
             modifier = Modifier.preferredSizeIn(maxHeight = 200.dp)
                 .fillMaxWidth())
     }
-}
+}*/

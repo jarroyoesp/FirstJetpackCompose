@@ -3,6 +3,8 @@ package com.jarroyo.firstjetpackcompose.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
+import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.AbsoluteArrangement.Center
@@ -24,23 +26,28 @@ import androidx.compose.ui.unit.sp
 import com.jarroyo.firstjetpackcompose.R
 import com.jarroyo.firstjetpackcompose.ui.compose.HomeComposable
 import com.jarroyo.firstjetpackcompose.ui.compose.LoginComposable
+import com.jarroyo.firstjetpackcompose.ui.viewmodel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class LoginActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class LoginActivity : ComponentActivity() {
+
+    val homeViewModel: HomeViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
         setContent {
             val appState = remember { AppState() }
-            NavigateApp(appState)
+            NavigateApp(appState, homeViewModel)
         }
     }
 }
 
 @Composable
-fun NavigateApp(appState: AppState) {
+fun NavigateApp(appState: AppState, homeViewModel: HomeViewModel) {
     // Choose which screen to show based on the value in the currentScreen variable inside AppState
     when (appState.currentScreen) {
-        CurrentScreen.LOGIN -> LoginComposable(appState)
+        CurrentScreen.LOGIN -> LoginComposable(appState, homeViewModel)
         CurrentScreen.HOME -> HomeComposable(appState)
     }
 }

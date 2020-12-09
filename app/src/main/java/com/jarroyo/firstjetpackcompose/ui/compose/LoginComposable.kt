@@ -9,6 +9,8 @@ import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -22,12 +24,17 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.jarroyo.firstjetpackcompose.R
+import com.jarroyo.firstjetpackcompose.domain.model.Breed
 import com.jarroyo.firstjetpackcompose.ui.AppState
 import com.jarroyo.firstjetpackcompose.ui.CurrentScreen
+import com.jarroyo.firstjetpackcompose.ui.viewmodel.HomeViewModel
 
 @Composable
-fun LoginComposable(appState: AppState) {
+fun LoginComposable(appState: AppState, homeViewModel: HomeViewModel) {
     val activity = (LifecycleOwnerAmbient.current as ComponentActivity)
+    val number: Int by homeViewModel.randomNumber.observeAsState(0)
+    val breedList: List<Breed>? by homeViewModel.breedList.observeAsState(null)
+
     Column(
         modifier = Modifier.fillMaxWidth().fillMaxHeight(),
         verticalArrangement = Arrangement.Center,
@@ -44,12 +51,13 @@ fun LoginComposable(appState: AppState) {
         TextField(value = passwordState.value,
             onValueChange = { passwordState.value = it },
             modifier = Modifier.fillMaxWidth().padding(16.dp))
-
+        
+        homeViewModel.getBreedList()
 
         Button(onClick = { appState.currentScreen = CurrentScreen.HOME; appState.email = emailState.value.text; appState.password = passwordState.value.text}) {
-            Text(text = "Aceptar")
+            Text(text = "Aceptar ${breedList?.get(0)?.name}")
         }
-        
+
         BackButtonHandler {
             activity.finish()
         }
